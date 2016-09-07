@@ -1,6 +1,6 @@
 export ZSH=/home/dkoval/.oh-my-zsh
 
-ZSH_THEME="honukai"
+ZSH_THEME="hyperzsh"
 
 export UPDATE_ZSH_DAYS=7
 
@@ -12,10 +12,15 @@ export EDITOR='vim'
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
+# Ruby
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-
 export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 
+# Go
+export GOPATH=/home/dkoval/go
+export PATH=$PATH:$GOPATH/bin
+
+export LESS=-FRX
 
 ##### aliases #####
 
@@ -32,11 +37,7 @@ alias vimcfg='vim ~/.vimrc'
 alias zshcfg='vim ~/.zshrc'
 alias awcfg='vim ~/.config/awesome/rc.lua'
 
-export PAGER=''
-
-# GO
-export GOPATH=/home/dkoval/go
-export PATH=$PATH:$GOPATH/bin
+##### functions #####
 
 # simplify cd in $GOPATH
 gd () {
