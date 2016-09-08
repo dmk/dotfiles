@@ -4,7 +4,7 @@ ZSH_THEME="hyperzsh"
 
 export UPDATE_ZSH_DAYS=7
 
-plugins=(lol rails archlinux bundler encode64 systemd)
+plugins=(rails archlinux bundler encode64 systemd)
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
