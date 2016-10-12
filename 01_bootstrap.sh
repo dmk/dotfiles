@@ -1,5 +1,7 @@
 #!/bin/sh
 
+rm -rf ~/.config/awesome ~/.vimrc ~/.vim
+
 mkdir ~/.config 2>/dev/null
 mkdir -p ~/.vim/colors
 
@@ -17,10 +19,10 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # installing vim plugins may take long time
 vim +PluginInstall +qall >/dev/null 2>/dev/null
 
-######## zsh ########
+####### zsh ########
+rm -rf ~/.*zsh*
+
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
+rm ~/.zshrc
 ln `pwd`/zshrc $HOME/.zshrc
-
-# install hyperzsh theme (https://github.com/tylerreckart/hyperzsh)
-wget https://raw.githubusercontent.com/tylerreckart/hyperzsh/master/hyperzsh.zsh-theme -O ~/.oh-my-zsh/themes/hyperzsh.zsh-theme

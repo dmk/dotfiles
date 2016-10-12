@@ -1,6 +1,6 @@
 export ZSH=/home/dkoval/.oh-my-zsh
 
-ZSH_THEME="hyperzsh"
+ZSH_THEME="robbyrussell"
 
 export UPDATE_ZSH_DAYS=7
 
