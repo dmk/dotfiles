@@ -26,3 +26,5 @@ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install
 
 rm ~/.zshrc
 ln `pwd`/zshrc $HOME/.zshrc
+
+ln -s `pwd`/terminator $HOME/.config
