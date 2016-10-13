@@ -72,10 +72,10 @@ end
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default apps to run.
-terminal = "st"
+terminal = "terminator"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-browser = "google-chrome-beta --profile-directory='Profile 1'"
+browser = "firefox"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -111,14 +111,14 @@ end
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "shutdown", "shutdown now" },
-   { "reboot", "reboot" }
+   { "restart", awesome.restart }
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal },
-                                    { "open browser",  browser  }
+                                    { "terminal", terminal },
+                                    { "firefox",  browser  },
+                                    { "shutdown", "shutdown now" },
+                                    { "reboot", "reboot" }
                                   }
                         })
 
@@ -398,21 +398,23 @@ root.keys(globalkeys)
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { border_width = beautiful.border_width,
+      properties = { border_width = 0,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
+    { rule = { class = "MPlayer, pinentry, gimp" },
       properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
-    { rule = { class = "gimp" },
-      properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
+
+    { rule = { class = "Firefox" },
+      properties = { tag = tags[2][1] } },
+
+    { rule = { class = "Slack" },
+      properties = { tag = tags[2][2] } },
+
+    { rule = { class = "Atom" },
+      properties = { tag = tags[1][3] } },
 }
 -- }}}
 
