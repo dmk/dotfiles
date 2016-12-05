@@ -1,13 +1,14 @@
-export ZSH=/home/dkoval/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="robbyrussell"
 
 export UPDATE_ZSH_DAYS=7
 
-plugins=(rails archlinux bundler encode64 systemd)
+plugins=(rails archlinux bundler encode64 systemd lol)
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
+export DOTFILES=$HOME/root/usr/local/dotfiles
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
@@ -17,24 +18,25 @@ export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export GEM_HOME=$(ruby -e 'print Gem.user_dir')
 
 # Go
-export GOPATH=/home/dkoval/go
+export GOPATH=$HOME/root/usr/local/go
 export PATH=$PATH:$GOPATH/bin
 
 export LESS=-FRX
 
+# npm
+export PATH=~/.npm-global/bin:$PATH
+
 ##### aliases #####
 
 # vagrant
-
 alias vu='vagrant up --provision'
 alias vp='vagrant provision'
 alias vd='vagrant destroy'
 alias vs='vagrant ssh'
 
 # config
-
 alias vimcfg='vim ~/.vimrc'
-alias zshcfg='vim ~/.zshrc'
+alias zshcfg='vim ~/.zshrc; source ~/.zshrc'
 alias awcfg='vim ~/.config/awesome/rc.lua'
 
 ##### functions #####
@@ -69,3 +71,21 @@ gd () {
   fi
 }
 # end gd()
+
+export PATH=$PATH:$HOME/root/bin
+
+# sudo
+alias sc='sudo systemctl'
+alias pm='sudo pacman'
+
+clr () {
+  echo 'Clearing mem in background...'
+  for i in {1..5}
+  do
+    sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches; sync'
+  done &
+}
+
+if hash pygmentize 2>/dev/null; then
+  alias cat="pygmentize -O style=monokai -f console256 -g"
+fi

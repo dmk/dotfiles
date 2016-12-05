@@ -28,6 +28,7 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'chrisbra/colorizer'
 Plugin 'gregsexton/matchtag'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'fatih/vim-go'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

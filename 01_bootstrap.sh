@@ -1,30 +1,36 @@
 #!/bin/sh
 
-rm -rf ~/.config/awesome ~/.vimrc ~/.vim
-
-mkdir ~/.config 2>/dev/null
-mkdir -p ~/.vim/colors
-
 set -xe
 
-ln -s `pwd`/config/awesome $HOME/.config/
+CWD=`pwd`
+echo $CWD
+
+rm -rf $HOME/.config/{awesome,terminator} $HOME/.vimrc $HOME/.vim
+if [[ ! -d $HOME/.config ]]; then
+  mkdir $HOME/.config 2>/dev/null
+fi
+
+mkdir -p $HOME/.vim/colors
+
+ln -s $CWD/config/awesome $HOME/.config/
 
 ######## vim ########
-ln `pwd`/vimrc $HOME/.vimrc
+ln $CWD/vimrc $HOME/.vimrc
 
-wget https://raw.githubusercontent.com/morhetz/gruvbox/master/colors/gruvbox.vim -P ~/.vim/colors
+wget https://raw.githubusercontent.com/morhetz/gruvbox/master/colors/gruvbox.vim -P $HOME/.vim/colors
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 
 # installing vim plugins may take long time
-vim +PluginInstall +qall >/dev/null 2>/dev/null
+vim +PluginInstall +qall
 
 ####### zsh ########
-rm -rf ~/.*zsh*
+rm -rf $HOME/.*zsh*
 
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
-rm ~/.zshrc
-ln `pwd`/zshrc $HOME/.zshrc
+rm $HOME/.zshrc
+ln $CWD/zshrc $HOME/.zshrc
 
-ln -s `pwd`/terminator $HOME/.config
+#### terminator ####
+ln -s $CWD/config/terminator $HOME/.config

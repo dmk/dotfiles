@@ -284,13 +284,12 @@ globalkeys = awful.util.table.join(
     ),
 
     -- Screenshot
-    awful.key({ modkey, "Control" }, "s", function () awful.util.spawn("xsnap -file /home/dkoval/screens/screen" .. os.time() .. ".png") end),
+    awful.key({ modkey, "Control" }, "s", function () awful.util.spawn("xsnap -file $HOME/screens/screen" .. os.time() .. ".png") end),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey,           }, "a", function () awful.util.spawn("atom") end),
     awful.key({ modkey, "Control" }, "f", function () awful.util.spawn(browser) end),
-    awful.key({ modkey, "Control" }, "d", function () awful.util.spawn("brave") end),
     awful.key({ modkey,           }, "s", function () awful.util.spawn("slack") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
@@ -490,5 +489,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-os.execute("nitrogen --set-zoom-fill --save /home/dkoval/down/bg.jpg")
+os.execute("nitrogen --set-zoom-fill --save $HOME/down/bg.jpg")
 -- }}}
