@@ -8,7 +8,9 @@ plugins=(rails archlinux bundler encode64 systemd lol)
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
+
 export DOTFILES=$HOME/root/usr/local/dotfiles
+export WORK="$HOME/work"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
@@ -28,16 +30,9 @@ export PATH=~/.npm-global/bin:$PATH
 
 ##### aliases #####
 
-# vagrant
-alias vu='vagrant up --provision'
-alias vp='vagrant provision'
-alias vd='vagrant destroy'
-alias vs='vagrant ssh'
-
 # config
 alias vimcfg='vim ~/.vimrc'
 alias zshcfg='vim ~/.zshrc; source ~/.zshrc'
-alias awcfg='vim ~/.config/awesome/rc.lua'
 
 ##### functions #####
 

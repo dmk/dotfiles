@@ -72,10 +72,10 @@ end
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default apps to run.
-terminal = "terminator"
+terminal = "st"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
-browser = "firefox"
+browser = "google-chrome"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -116,7 +116,7 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "terminal", terminal },
-                                    { "firefox",  browser  },
+                                    { "chrome",  browser  },
                                     { "shutdown", "shutdown now" },
                                     { "reboot", "reboot" }
                                   }
@@ -288,9 +288,10 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey,           }, "a", function () awful.util.spawn("atom") end),
+    awful.key({ modkey,           }, "a", function () awful.util.spawn("code") end),
     awful.key({ modkey, "Control" }, "f", function () awful.util.spawn(browser) end),
     awful.key({ modkey,           }, "s", function () awful.util.spawn("slack") end),
+    awful.key({ modkey,           }, "t", function () awful.util.spawn("telegram-desktop") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -305,7 +306,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey },            "r",     function () mypromptbox[1]:run() end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -405,15 +406,6 @@ awful.rules.rules = {
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer, pinentry, gimp" },
       properties = { floating = true } },
-
-    { rule = { class = "Firefox" },
-      properties = { tag = tags[2][1] } },
-
-    { rule = { class = "Slack" },
-      properties = { tag = tags[2][2] } },
-
-    { rule = { class = "Atom" },
-      properties = { tag = tags[1][3] } },
 }
 -- }}}
 
