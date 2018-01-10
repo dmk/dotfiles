@@ -40,5 +40,3 @@ apps="$usrlocal/apps"
 ### golang ###
 mkdir "$usrlocal/go"
 
-### st ###
-git clone https://git.suckless.org/st "$apps/st"
