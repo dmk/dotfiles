@@ -1,5 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
+source $HOME/.profile
+
 ZSH_THEME="robbyrussell"
 
 export UPDATE_ZSH_DAYS=7
@@ -81,6 +83,6 @@ clr () {
   done &
 }
 
-if hash pygmentize 2>/dev/null; then
-  alias cat="pygmentize -O style=monokai -f console256 -g"
-fi
+export GPG_TTY=$(tty)
+export TERM=screen-256color
+
