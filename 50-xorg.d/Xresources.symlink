@@ -1,0 +1,89 @@
+URxvt*iso14755: off
+URxvt*iso14755_52: off
+
+URxvt*buffered: false
+
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput: false
+URxvt*skipScroll: true
+
+URxvt*secondaryScreen: true
+URxvt*secondaryScroll: true
+
+URxvt*keysym.Control-Up: \033[1;5A
+URxvt*keysym.Control-Down: \033[1;5B
+URxvt*keysym.Control-Left: \033[1;5D
+URxvt*keysym.Control-Right: \033[1;5C
+
+! URxvt*perl-lib: /home/dkoval/.files/urxvt/ext/perl
+! URxvt*perl-ext-common: clipboard,default,keyboard-select,url-select
+!
+! URxvt*keysym.M-Escape: perl:keyboard-select:activate
+!
+! URxvt*keysym.M-u: perl:url-select:select_next
+! URxvt*url-select.launcher: /usr/bin/xdg-open
+! URxvt*url-select.underline: true
+! URxvt*url-select.button: 1
+
+! URxvt*keysym.M-C: perl:clipboard:copy
+! URxvt*keysym.M-V: perl:clipboard:paste
+! URxvt*clipboard.copycmd:  clipboard-copy
+! URxvt*clipboard.pastecmd: xsel --output --clipboard
+
+URxvt*saveLines: 2500
+
+URxvt*font: xft:Source Code Pro:size=14,xft:Material Icons:size=10
+URxvt*boldFont: xft:Source Code Pro Semibold:size=14,xft:icons\-in\-terminal:size=10
+URxvt*italicFont: xft:Source Code Pro:style=Italic:size=14,xft:icons\-in\-terminal:size=10
+URxvt*bolditalicFont: xft:Source Code Pro Semibold:style=Italic:size=14,xft:icons\-in\-terminal:size=10
+
+! Urxvt.letterSpace: -1
+
+URxvt.internalBorder: 25
+
+URxvt*underlineColor: #88afd4
+URxvt*cursorBlink: true
+URxvt*scrollBar: false
+URxvt*troughColor: #000000
+
+! hard contrast: *background: #1d2021
+! default contrast: *background: #282828
+! soft contrast: *background: #32302f
+*background: #282828
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+
+Xft*dpi: 82
+Xft*hinting: true
+Xft*hintstyle: hintfull
+Xft*rgba: rgb
+Xft*lcdfilter: lcddefault
+Xft*autohint: false
+
+Emacs.menuBar: false
+Emacs.toolBar: false
+Emacs.verticalScrollBars: false
+Emacs.internalBorder: 30

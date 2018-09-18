@@ -1,25 +1,9 @@
 paulmelnikow/zsh-startup-timer
 
-nviennot/zsh-vim-plugin
-ascii-soup/zsh-url-highlighter
 ael-code/zsh-colored-man-pages
-
-seletskiy/zsh-hash-aliases
-hlissner/zsh-autopair autopair.zsh
-
-# zpm-zsh/tmux
-
-caarlos0/zsh-mkc
-mafredri/zsh-async
-rupa/z
 
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
-geometry-zsh/geometry
-jedahan/geometry-hydrate
-
 zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
-
-zsh-users/zaw

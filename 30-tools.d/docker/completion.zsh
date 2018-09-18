@@ -1,0 +1,1 @@
+fpath=(~/.docker/completions $fpath)

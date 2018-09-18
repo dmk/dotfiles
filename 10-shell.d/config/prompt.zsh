@@ -1,42 +1,62 @@
-#!/bin/zsh
+# Color definitions
+local T_COLOR_PROMPT="blue"
+local T_COLOR_ROOT=""
+local T_COLOR_DIR="red"
+local T_COLOR_EXIT_VALUE="cyan"
 
-GEOMETRY_PROMPT_PREFIX="" # remove extra newline
+# Symbol definitions
+local T_SYMBOL_ROOT=${T_SYMBOL_ROOT-"▲"}
+local T_SYMBOL_PROMPT=${T_SYMBOL_PROMPT-"▲"}
+local T_SYMBOL_EXIT_VALUE=${T_SYMBOL_EXIT_VALUE-"△"}
 
-# GEOMETRY_PROMPT_BASENAME=true
-GEOMETRY_PROMPT_PLUGINS="git hydrate"
+# Misc configurations
+local T_PROMPT_PREFIX_SPACER=${T_PROMPT_PREFIX_SPACER-" "}
 
-# Prompt theming
+local T_DIR_SPACER=${T_DIR_SPACER-""}
+local T_SYMBOL_SPACER=${T_SYMBOL_SPACER-" "}
 
-GEOMETRY_COLOR_EXIT_VALUE="red"             # prompt symbol color when exit
-GEOMETRY_COLOR_PROMPT="green"               # prompt symbol color
-GEOMETRY_COLOR_ROOT="yellow"                # root prompt symbol color
-GEOMETRY_COLOR_DIR="blue"                   # current directory color
+local T_PROMPT_PATH=${T_PROMPT_PATH:-"%3~"}
 
-GEOMETRY_SYMBOL_PROMPT="α"                  # default prompt symbol
-GEOMETRY_SYMBOL_RPROMPT="…"               # multiline prompts
-GEOMETRY_SYMBOL_EXIT_VALUE="α"              # displayed when exit value is != 0
-GEOMETRY_SYMBOL_ROOT="ρ"                    # when logged in user is root
+# Define how to colorize before the variables
+prompt_colorize() {
+	echo "%F{$1}$2%f"
+}
 
-# Plugins
+geometry_prompt_path_setup() {
+	# Combine color and symbols
+	T_EXIT_VALUE=$(prompt_colorize $T_COLOR_EXIT_VALUE $T_SYMBOL_EXIT_VALUE)
+	T_PROMPT=$(prompt_colorize $T_COLOR_PROMPT $T_SYMBOL_PROMPT)
+}
 
-# Git plugin
+prompt_render() {
+	local prompt_symbol=""
 
-GEOMETRY_SYMBOL_GIT_DIRTY="◉"               # when repo has "dirty" state
-GEOMETRY_SYMBOL_GIT_CLEAN="●"               # when repo has "clean" state
-GEOMETRY_SYMBOL_GIT_BARE="◌"                 # when repo is bare (no working tree)
-GEOMETRY_SYMBOL_GIT_REBASE="◙"			    # when in middle of rebase
-GEOMETRY_SYMBOL_GIT_UNPUSHED="△"            # when there are unpushed changes
-GEOMETRY_SYMBOL_GIT_UNPULLED="▽"            # when there are unpulled changes
-GEOMETRY_SYMBOL_GIT_CONFLICTS_SOLVED="•"    # when all conflicts have been solved
-GEOMETRY_SYMBOL_GIT_CONFLICTS_UNSOLVED="◦"  # when there are still unsolved conflicts
+	if [ $? -eq 0 ] ; then
+		prompt_symbol=$T_SYMBOL_PROMPT
+	else
+		prompt_symbol=$T_SYMBOL_EXIT_VALUE
+	fi
 
-PROMPT_GEOMETRY_GIT_TIME_SHOW_EMPTY=false
-PROMPT_GEOMETRY_GIT_TIME=false
-PROMPT_GEOMETRY_GIT_CONFLICTS=true
+	if [[ $UID == 0 || $EUID == 0 ]]; then
+		T_PROMPT=$(prompt_colorize $T_COLOR_ROOT $T_SYMBOL_ROOT)
+	fi
 
-# Hydrate plugin
+	local dir=$T_PROMPT_PATH
+	if [ $PWD = $HOME ]; then
+		dir="~"
+	else
+		dir=$(basename $PWD)
+	fi
 
-GEOMETRY_PLUGIN_HYDRATE_COLOR=blue
-GEOMETRY_PLUGIN_HYDRATE_SYMBOL="ﭧ"
-GEOMETRY_PLUGIN_HYDRATE_INTERVAL=1
-GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^H'
+	local colorized_prompt_symbol="%(?.$T_PROMPT.$T_EXIT_VALUE)"
+	local colorized_prompt_dir="%F{$T_COLOR_DIR}$dir%f"
+
+	PROMPT="$colorized_prompt_symbol $colorized_prompt_dir $T_PROMPT_SUFFIX$PROMPT_T_PRIMARY_SUFFIX"
+}
+
+prompt_setup() {
+	autoload -U add-zsh-hook
+	add-zsh-hook precmd prompt_render
+}
+
+prompt_setup
